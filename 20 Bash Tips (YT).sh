@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------------
 # Project Name      - 20 Bash Tips (YT).sh
 # Started On        - Sun 21 Apr 22:37:04 BST 2019
-# Last Change       - Mon 22 Apr 21:51:52 BST 2019
+# Last Change       - Fri 26 Apr 15:00:36 BST 2019
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #----------------------------------------------------------------------------------
@@ -19,8 +19,8 @@ ls -C **
 
 [[ REGEXSTRING =~ [XS] ]] && echo "Contains X or S."
 
-find /boot -type d -name grub 2>&1 > /dev/null
-find /boot -type d -name grub &> /dev/null
+find /boot -type d -name grub >&- 2>&-
+find /boot -type d -name grub >&- 2>&-
 
 A="My string."
 echo "${A:3:8}"
