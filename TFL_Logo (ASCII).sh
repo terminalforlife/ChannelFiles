@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 while read -r; do
 	printf "\033[1;31m%s\033[0m\n" "$REPLY"
