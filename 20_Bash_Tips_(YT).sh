@@ -19,8 +19,8 @@ ls -C **
 
 [[ REGEXSTRING =~ [XS] ]] && echo "Contains X or S."
 
-find /boot -type d -name grub >&- 2>&-
-find /boot -type d -name grub >&- 2>&-
+find /boot -type d -name grub > /dev/null 2>&1
+find /boot -type d -name grub > /dev/null 2>&1
 
 A="My string."
 echo "${A:3:8}"
