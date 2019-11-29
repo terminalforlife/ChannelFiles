@@ -1,0 +1,42 @@
+#----------------------------------------------------------------------------------
+# Project Name      - LearnLinux/PasswdParsing.txt
+# Started On        - Fri 29 Nov 16:55:48 GMT 2019
+# Last Change       - Fri 29 Nov 16:57:49 GMT 2019
+# Author E-Mail     - terminalforlife@yahoo.com
+# Author GitHub     - https://github.com/terminalforlife
+#----------------------------------------------------------------------------------
+# This file was created in an attempt to help Reddit user 'warlordx666'.
+#
+#   https://www.reddit.com/r/shell/comments/dv2pkw/shell_script_to_list_files/
+#
+# Do not run this as it is, as it contains both Perl and shell (via Bash) code.
+#--------------------------------------------------------------------SHELL SOLUTION
+
+# List all users WITH the Google file:
+while IFS=':' read -a CurLine; do
+	if [ -n "${CurLine[0]}" -a ${CurLine[2]} -ge 1000 ]; then
+		[ "${CurLine[0]}" == 'nobody' ] && continue
+		if [ -f "/home/${CurLine[0]}/.google_authenticator" ]; then
+			$printf "%s %d\n" "${CurLine[0]}" ${CurLine[2]}
+		fi
+	fi
+done < /etc/passwd
+
+#---------------------------------------------------------------------PERL SOLUTION
+
+use strict;
+use warnings;
+
+my $InFile = '/etc/passwd';
+
+open(my $FH, '<', $InFile);
+my @Data = <$FH>;
+close($FH);
+
+foreach (@Data){
+	chomp(my @CurLine = split(':', $_));
+	if ($CurLine[2] >= 1000 && $CurLine[0] ne 'nobody'){
+		next if not -f '/home/' . $CurLine[0] . '/.google_authenticator';
+		printf("%s %d\n", $CurLine[0], $CurLine[2])
+	}
+}
