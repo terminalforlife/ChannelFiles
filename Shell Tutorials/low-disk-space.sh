@@ -3,11 +3,13 @@
 #------------------------------------------------------------------------------
 # Project Name      - LearnLinux/Shell Tutorials/clearing-cache-files.sh
 # Started On        - Wed 16 Dec 22:58:47 GMT 2020
-# Last Change       - Wed 16 Dec 23:23:44 GMT 2020
+# Last Change       - Wed 16 Dec 23:43:43 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
-# Simple script to interactively remove cache and thumbnails of each user.
+# Simple script to interactively remove cache and thumbnails of each user, as
+# well as blast away cached (downloaded) Debian packages and uninstall what was
+# installed by 'orphaned' packages.
 #
 # You can either run:
 #
@@ -29,7 +31,7 @@ if [ $UID -gt 0 ]; then
 	exit 1
 fi
 
-for Dir /home/*; {
+for Dir in /home/*; {
 	read -sp "Delete cache files for '${Dir##*/}' user? [Y/N] "
 
 	case $REPLY in
@@ -39,6 +41,9 @@ for Dir /home/*; {
 			fi ;;
 		[Nn][Oo]|[Nn])
 			continue
+			exit 2 ;;
+		*|'')
+			exit 2 ;;
 	esac
 }
 
