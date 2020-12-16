@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - LearnLinux/Shell Tutorials/clearing-cache-files.sh
 # Started On        - Wed 16 Dec 22:58:47 GMT 2020
-# Last Change       - Wed 16 Dec 23:01:36 GMT 2020
+# Last Change       - Wed 16 Dec 23:23:44 GMT 2020
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -24,6 +24,11 @@
 # This will ignore the root user, by the way.
 #------------------------------------------------------------------------------
 
+if [ $UID -gt 0 ]; then
+	printf 'ERROR: Root access is required.\n' 1>&2
+	exit 1
+fi
+
 for Dir /home/*; {
 	read -sp "Delete cache files for '${Dir##*/}' user? [Y/N] "
 
@@ -36,3 +41,6 @@ for Dir /home/*; {
 			continue
 	esac
 }
+
+apt-get autoremove
+apt-get clean
