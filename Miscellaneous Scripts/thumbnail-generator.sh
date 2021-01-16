@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - LearnLinux/Miscellaneous Scripts/thumbnail-generator.sh
 # Started On        - Thu 14 Jan 20:54:57 GMT 2021
-# Last Change       - Sat 16 Jan 03:23:37 GMT 2021
+# Last Change       - Sat 16 Jan 14:00:23 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ Err(){
 	[ $1 -gt 0 ] && exit $1
 }
 
-#[ $# -ne 1 ] && Err 1 'Thumbnail annotation string required.'
+[ $# -ne 1 ] && Err 1 'Thumbnail annotation string required.'
 
 command -v convert 1> /dev/null 2>&1 || Err 1 "Dependency 'convert' not met."
 command -v feh 1> /dev/null 2>&1 || Err 1 "Dependency 'feh' not met."
@@ -40,7 +40,7 @@ convert "$Output" -fill "$TextColor" -strokewidth 4 -stroke Black\
 
 [ $? -eq 0 ] && Err=$((Err + $?))
 
-convert "$Output" -resize "$Resize" "$Output"
+convert "$Output" -resize "$Resize" -quality 100 "$Output"
 
 [ $? -eq 0 ] && Err=$((Err + $?))
 

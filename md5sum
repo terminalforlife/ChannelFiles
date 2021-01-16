@@ -1,4 +1,3 @@
-cb926549a73d82d7152db48bac6f88de  20_Bash_Tips_(YT).sh
 00c505d961118bfb4702a4b4f4ac7ef1  Countdown Frames (Half Size)/00.png
 cfdfbd71d2c0e022ca42ec071a01b7df  Countdown Frames (Half Size)/01.png
 16594709b51b04a215b5edca5103a356  Countdown Frames (Half Size)/02.png
@@ -125,21 +124,23 @@ b763424777bb5e8c5c784bb090e9c96b  Countdown Frames (Original Size)/56.png
 3f8ff9d1271af6c5a46d9a17824289ff  LL Banner.png
 775118a05dbfcd3f19fdf1081428e201  LL Logo.jpg
 59106f57ef5d883efc9af451131bdd7e  LL Logo.png
+04c3ce6f0db8f95e17ae4213a19fb4b6  LL Thumbnail.jpg
 c7c18ffb0796eb8cc5f7b252e716e8a7  LL Watermark.png
 a3ffda9275e74d4362c9cb43d3f3c6f7  LL WellDone.ogg
-c58f9288353ea1fc6f996da50f414d63  Miscellaneous Scripts/thumbnail-generator.sh
-88df35f8b2f0eff90169e4f8adb7dc1f  PassParse.txt
+88df35f8b2f0eff90169e4f8adb7dc1f  Miscellaneous Docs/PassParse.txt
+cb926549a73d82d7152db48bac6f88de  Miscellaneous Scripts/20_Bash_Tips_(YT).sh
+48c53fe68dfdff6d6091729d959d4090  Miscellaneous Scripts/SeparateFieldsBy.sh
+78a984540a15c7ed59df6e95dea9d0fe  Miscellaneous Scripts/TFL_Logo (ASCII).sh
+a88e371e2b2f4f9b22982579e5ce07cf  Miscellaneous Scripts/thumbnail-generator.sh
 76e5429000bd931cd286c993e2f84244  Perl Tutorials/Intro to Perl -- 'if and unless'.pl
 ae08601d5505d8f2645564b3b7732274  Perl Tutorials/Intro to Perl -- 'printf()'.pl
 073ef40ce21c832db4f994484130f413  Perl Tutorials/Intro to Perl -- 'print()'.pl
 f3f90cd5c87d793666960b74a6e4219e  Perl Tutorials/Intro to Perl -- 'sprintf()'.pl
 054e2fd1775ea1bcfb719ad2c60777ef  Perl Tutorials/Shell VS Perl Programming/Shell VS Perl Programming (Part_1).pl
 120fa3ec0a32c74df6fea21e3943a5e5  Perl Tutorials/Shell VS Perl Programming/Shell VS Perl Programming (Part_1).sh
-48c53fe68dfdff6d6091729d959d4090  SeparateFieldsBy.sh
 d9d57c921456532fac128b6304499915  Shell Tutorials/list-cpu-temps.sh
 fa8b34b4638bf75746ec20cd0ffedff8  Shell Tutorials/low-disk-space.sh
 46206de805925f083d3c2963824e82ee  Shell Tutorials/Parsing Websites #2.sh
 6822bb9ceaad8bc7c360ea037d75c9a3  Shell Tutorials/Parsing Websites.sh
 6c4dd10eb01ee29dd146725c1f604d8f  Shell Tutorials/sysfs-ttl-disk-space.sh
 9aa23925ecc97df5a09b610fc93ee706  Shlides/Yash_Video.shl
-78a984540a15c7ed59df6e95dea9d0fe  TFL_Logo (ASCII).sh
