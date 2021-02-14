@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - LearnLinux/Miscellaneous Scripts/thumbnail-generator.sh
 # Started On        - Thu 14 Jan 20:54:57 GMT 2021
-# Last Change       - Sat 16 Jan 14:00:23 GMT 2021
+# Last Change       - Fri  5 Feb 18:02:04 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ Font='Noto-Sans-Display-Bold'
 FontSize=200
 Text=$1
 TextColor='#FFFFFF'
-Resize='50%'
+#Resize='50%'
 Original="$HOME/Pictures/thumbnail.jpg"
 Output="$HOME/Desktop/output.jpg"
 
@@ -40,9 +40,9 @@ convert "$Output" -fill "$TextColor" -strokewidth 4 -stroke Black\
 
 [ $? -eq 0 ] && Err=$((Err + $?))
 
-convert "$Output" -resize "$Resize" -quality 100 "$Output"
+#convert "$Output" -resize "$Resize" -quality 100 "$Output"
 
-[ $? -eq 0 ] && Err=$((Err + $?))
+#[ $? -eq 0 ] && Err=$((Err + $?))
 
 # If '0', then no errors occurred, so display image.
 [ $Err -eq 0 ] && feh "$Output"
