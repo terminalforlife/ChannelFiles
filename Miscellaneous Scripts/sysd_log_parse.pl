@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - LearnLinux/Miscellaneous Scripts/sysd_log_parse.pl
 # Started On        - Thu 11 Mar 15:03:17 GMT 2021
-# Last Change       - Thu 11 Mar 15:08:05 GMT 2021
+# Last Change       - Thu 11 Mar 15:10:25 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -12,8 +12,8 @@
 #   https://forums.linuxmint.com/viewtopic.php?f=90&t=342758
 #
 # Simple Perl script for the SystemD log, via journalctl(1), to display only
-# unique messages, ignoring the time, date, and hostname, and only lines which
-# match 'warning', 'error', and 'fail', case-insensitively.
+# unique messages, ignoring the time, date, and hostname, and to show lines
+# which match the REGEX 'warning', 'error', and 'fail', case-insensitively.
 #
 # Usage: sysd_log_parse.pl file.log
 #------------------------------------------------------------------------------
