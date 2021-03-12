@@ -1,0 +1,113 @@
+How to Compile Your Own Linux Kernel                                 2021-03-12
+-------------------------------------------------------------------------------
+
+You are always welcome to look up glkfu(1) to make this much easier:
+
+    https://github.com/terminalforlife/Extra/blob/master/source/glkfu
+
+Before you can properly begin with this guide, ensure you have the following
+required packages installed:
+
+    bc bison build-essential fakeroot flex libelf-dev libssl-dev rsync
+
+The following are brief instructions on how to compile Linux, for Ubuntu or
+distributions based thereon; those based on Debian will probably be fine
+following the same or similar instructions. In my case, I'll be using 5.11.6.
+
+1.  Browse to 'kernel.org' then right-click the big yellow rectangle with
+    'Latest Release' and the latest stable kernel version shown in it. Select
+    whichever option copies the download link, which in the case of Firefox is
+    'Copy Link Location'.
+
+2.  Open a terminal, then change to a location with plenty of space (~30G, to
+    be safe) and in which you have read, write, and execute privileges.
+
+3.  Paste in the previously-copied download URL into the terminal, so you have
+    something like the following one-liner:
+
+      $ wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.11.6.tar.xz
+
+    This will download the tarball for the latest kernel into the CWD.
+
+4.  Now decompress the tarball with xz(1):
+
+      $ xz -d linux-5.11.6.tar.xz
+
+    This should also rename the archive to 'linux-5.11.6.tar', since it's no
+    longer compressed via XZ. We're now ready to verify our download.
+
+5.  Import the public RSA keys belonging to both Linus Torvalds and Greg
+    Kroah-Hartman, using gpg(1).
+
+      $ gpg --locate-keys 'torvalds@kernel.org' 'gregkh@kernel.org'
+
+6.  Download the signature file for the chosen kernel.
+
+      $ wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.11.6.tar.xz.sign
+
+    If the tarball verified successfully, you can now delete the signature file
+    and continue on to the next step.
+
+7.  Extract the contents of the tarball.
+
+      $ tar -xvf linux-5.11.6.tar
+
+8.  Change into the new directory containing the extracted contents.
+
+      $ cd linux-5.11.6
+
+9.  Copy an existing '*.config' kernel configuration file to the CWD, and name
+    it exactly '.config'. For this guide, I'll be using my previous kernel's
+    configuration file.
+
+      $ cp /boot/5.11.5.config ./.config
+
+    At this point you can make further changes to the configurations with the
+    following handy GNU Ncurses interface, provided you have the package
+    'libncurses5-dev' installed.
+
+      $ make menuconfig
+
+    But don't feel like you need to if you're just starting out with compiling
+    and configuring your own kernel, because it can get quite complicated.
+
+10. Optionally, disable modules for hardware you don't have. You will likely
+    run into issues if you later use new hardware, so either configure the
+    kernel accordingly, or keep it generic.
+
+      $ make localmodconfig
+
+    It's quite likely you'll be updating your kernel many times over long
+    before your next hardware upgrade, but even a simple USB device needs a
+    driver. Just be mindful that you may need to recompile for a given feature.
+
+    Using a targeted kernel will award you various benefits, such as a savings
+    in disk space, improved boot-up time, a potential boost to system
+    performance, and improved system security.
+
+11. Optionally, disable debugging info via the 'DEBUG_INFO' configuration
+    parameter. This will improve compilation time and offer a smaller image.
+
+      $ scripts/config --disable DEBUG_INFO
+
+    You can safely do this unless you wish to debug the kernel.
+
+12. Now you can compile the kernel and build Debian packages.
+
+      $ make -j X bindeb-pkg
+
+    Where X is the number of cores/threads of your CPU to use for compilation.
+    You can use the following one-liner to determine the number of CPU cores
+    on your system.
+
+      $ grep -c '^processor\s\+:' /proc/cpuinfo
+
+13. All that's left now is to install the created Debian files, provided you
+    have the 'initramfs-tools' package installed, so an 'initrd' can be made.
+
+      $ cd .. && sudo dpkg -i *.deb
+
+14. Now you can reboot to complete this guide.
+
+If anything went wrong, you can always load the system up with your previous
+kernel, provided your system has such functionality, such as via GRUB.
