@@ -1,0 +1,52 @@
+Escape Sequences (Common Terminal Type)                              2021-06-08
+-------------------------------------------------------------------------------
+
+* Terminal Layout
+
+	\ec                    - Clear terminal, like clear(1) and `tput clear`.
+	\e[1;20r               - Allow scrolling from 1st line to 20th line.
+	\e[?47h                - Save terminal layout.
+	\e[?47l                - Restore terminal layout.
+
+* Cursor Positioning
+
+	\e[s / \e7             - Save the current cursor position.
+	\e[u / \e8             - Restore the previously-saved cursor position.
+	\e[1C                  - Move the cursor forward once.
+	\e[1D                  - Move the cursor backwards once.
+	\e[H                   - Move the cursor to the home (1;1) position.
+	\eD                    - Move the cursor to the next line.
+	\eM                    - Move the cursor to the previous line.
+	\e[1;1H                - Move the cursor to a given position. (IE: Home)
+
+* Text Attributes
+
+	\e[0m                  - Reset (sgr0).
+	\e[1m                  - Bold.
+	\e[2m                  - Dim.
+	\e[3m                  - Italic.
+	\e[4m                  - Underline.
+	\e[5m                  - Blink.
+	\e[7m                  - Reverse foreground & background colors.
+	\e[8m                  - Hidden. (rarely available)
+	\e[9m                  - Strikethrough.
+
+* Text Colors
+
+	The following colors can be brightened by adding 60 to the number. If you
+	add 10 (sum includes bright variants), you'll adjust the background colors.
+
+	\e[30m                 - Normal black.
+	\e[31m                 - Normal red.
+	\e[32m                 - Normal green.
+	\e[33m                 - Normal yellow.
+	\e[34m                 - Normal blue.
+	\e[35m                 - Normal magenta.
+	\e[36m                 - Normal cyan.
+	\e[37m                 - Normal white.
+
+	Colors and attributes can be combined with, for example: \e[2;37m
+
+* Characters
+
+	\t / \e[I              - Indent (tab).
