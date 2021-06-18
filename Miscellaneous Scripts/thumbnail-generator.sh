@@ -3,19 +3,21 @@
 #------------------------------------------------------------------------------
 # Project Name      - LearnLinux/Miscellaneous Scripts/thumbnail-generator.sh
 # Started On        - Thu 14 Jan 20:54:57 GMT 2021
-# Last Change       - Fri  5 Feb 18:02:04 GMT 2021
+# Last Change       - Thu 17 Jun 23:33:10 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # Crappy thumbnail generator, because the people demand it!
 #------------------------------------------------------------------------------
 
-Font='Noto-Sans-Display-Bold'
+#Font='Noto-Sans-Display-Bold'
+Font='Mononoki-Bold'
 FontSize=200
 Text=$1
 TextColor='#FFFFFF'
 #Resize='50%'
-Original="$HOME/Pictures/thumbnail.jpg"
+#Original="$HOME/Pictures/thumbnail.jpg"
+Original="$HOME/Pictures/TFL/TFL Thumbnail.jpg"
 Output="$HOME/Desktop/output.jpg"
 
 Err(){
@@ -29,7 +31,7 @@ command -v convert 1> /dev/null 2>&1 || Err 1 "Dependency 'convert' not met."
 command -v feh 1> /dev/null 2>&1 || Err 1 "Dependency 'feh' not met."
 
 # I know these can be combined, but I'm finding it easier to split them up.
-convert "$Original" -auto-level -background '#000000' -vignette 0x120+-60-60\
+convert "$Original" -background '#000000' -vignette 0x120+-60-60\
 	-quality 100 "$Output"
 
 [ $? -eq 0 ] && Err=$((Err + $?))
