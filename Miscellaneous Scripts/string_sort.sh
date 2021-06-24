@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/string_sort.sh
 # Started On        - Thu 24 Jun 05:18:52 BST 2021
-# Last Change       - Thu 24 Jun 07:06:15 BST 2021
+# Last Change       - Thu 24 Jun 19:48:19 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -14,8 +14,6 @@
 #       want, you can tweak it for only uppercase, numbers, and perhaps
 #       experiment with variations thereof.
 #
-#       Another caveat is that duplicate letters will be ignored, sadly.
-#
 # Usage: string_sort.sh STRING
 #------------------------------------------------------------------------------
 
@@ -24,8 +22,6 @@ for Alpha in {a..z}; {
 	for (( Char = 0; Char <= Len; Char++ )); {
 		if [ "${1:Char:1}" == "$Alpha" ]; then
 			printf '%s' "${1:Char:1}"
-
-			break
 		fi
 	}
 }
