@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/string_sort.sh
 # Started On        - Thu 24 Jun 05:18:52 BST 2021
-# Last Change       - Thu 24 Jun 06:37:07 BST 2021
+# Last Change       - Thu 24 Jun 07:06:15 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -16,7 +16,7 @@
 #
 #       Another caveat is that duplicate letters will be ignored, sadly.
 #
-# Usage: string_sort STRING
+# Usage: string_sort.sh STRING
 #------------------------------------------------------------------------------
 
 Len=${#1}
