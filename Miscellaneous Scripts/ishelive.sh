@@ -3,13 +3,15 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/ishelive.sh
 # Started On        - Fri  3 Sep 13:57:14 BST 2021
-# Last Change       - Fri  3 Sep 14:35:42 BST 2021
+# Last Change       - Fri  3 Sep 14:57:48 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
+# Simple script to show when 'Terminalforlife' (YouTube) is live streaming.
+#
 # Features:
 #
-#TODO: Display URL if live.
+# N/A
 #
 # Bugs:
 #
@@ -32,6 +34,8 @@ Usage(){
 
 		  -h, --help               - Display this help information.
 		  -v, --version            - Output the version datestamp.
+		  -C, --nocolor            - Omit ANSI color escape sequences.
+		  -l, --link               - Display URL to YouTube channel.
 	EOF
 }
 
@@ -42,6 +46,12 @@ Err(){
 
 Domain='https://www.youtube.com'
 URL="$Domain/results?search_query=Terminalforlife&sp=EgQQAUAB"
+ChannelHome='https://youtube.com/c/Terminalforlife'
+Match='"live_chat_show_ongoing_poll_results_in_banner":true'
+
+Red='\e[91m'
+Green='\e[92m'
+Reset='\e[0m'
 
 while [ "$1" ]; do
 	case $1 in
@@ -49,11 +59,22 @@ while [ "$1" ]; do
 			Usage; exit 0 ;;
 		--version|-v)
 			printf '%s\n' "$CurVer"; exit 0 ;;
+		--nocolor|-C)
+			NoColor='True' ;;
+		--link|-l)
+			DoLink='True' ;;
 		*)
 			Err 1 'Incorrect option(s) specified.' ;;
 	esac
 	shift
 done
+
+case $NoColor in
+	True)
+		Red=
+		Green=
+		Reset= ;;
+esac
 
 if type -P curl &> /dev/null; then
 	Data=`curl -A 'Mozilla/5.0' -s "$URL"`
@@ -65,14 +86,18 @@ fi
 
 while read Line; do
 	case $Line in
-		*'"live_chat_show_ongoing_poll_results_in_banner":true'*)
-			IsLive='True' ;;
+		*$Match*)
+			IsLive='True'
+			break ;;
 	esac
 done <<< "$Data"
 
-printf 'Terminalforlife: '
 if [ "$IsLive" == 'True' ]; then
-	printf '\e[92mLive\e[0m\n'
+	if [ "$DoLink" == 'True' ]; then
+		printf "${Green}%s$Reset\n" "$ChannelHome"
+	else
+		printf "${Green}Live$Reset\n"
+	fi
 else
-	printf '\e[91mOffline\e[0m\n'
+	printf '$Red<Offline>$Reset\n'
 fi
