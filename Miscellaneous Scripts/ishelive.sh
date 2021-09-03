@@ -3,13 +3,13 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/ishelive.sh
 # Started On        - Fri  3 Sep 13:57:14 BST 2021
-# Last Change       - Fri  3 Sep 14:18:30 BST 2021
+# Last Change       - Fri  3 Sep 14:35:42 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # Features:
 #
-# N/A
+#TODO: Display URL if live.
 #
 # Bugs:
 #
@@ -55,17 +55,18 @@ while [ "$1" ]; do
 	shift
 done
 
-if type -P wget &> /dev/null; then
-	Data=`wget -qO - "$URL"`
-elif type -P curl &> /dev/null; then
-	Data=`curl -s "$URL"`
+if type -P curl &> /dev/null; then
+	Data=`curl -A 'Mozilla/5.0' -s "$URL"`
+elif type -P wget &> /dev/null; then
+	Data=`wget -U 'Mozilla/5.0' -qO - "$URL"`
 else
 	Err 1 "Neither 'wget' nor 'curl' found."
 fi
 
 while read Line; do
 	case $Line in
-		*'"label":"LIVE NOW"'*) IsLive='True' ;;
+		*'"live_chat_show_ongoing_poll_results_in_banner":true'*)
+			IsLive='True' ;;
 	esac
 done <<< "$Data"
 
