@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/ishelive.sh
 # Started On        - Fri  3 Sep 13:57:14 BST 2021
-# Last Change       - Fri  3 Sep 14:57:48 BST 2021
+# Last Change       - Tue  7 Sep 11:03:24 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -15,7 +15,7 @@
 #
 # Bugs:
 #
-# N/A
+#TODO: Completely broken. Keeps showing as 'Live', despite not being 'Live'.
 #
 # Dependencies:
 #
@@ -23,7 +23,7 @@
 #   wget (>= 1.19.4-1) | curl (>= 7.58.0-2)
 #------------------------------------------------------------------------------
 
-CurVer='2021-09-03'
+CurVer='2021-09-07'
 Progrm=${0##*/}
 
 Usage(){
@@ -45,9 +45,9 @@ Err(){
 }
 
 Domain='https://www.youtube.com'
-URL="$Domain/results?search_query=Terminalforlife&sp=EgQQAUAB"
-ChannelHome='https://youtube.com/c/Terminalforlife'
-Match='"live_chat_show_ongoing_poll_results_in_banner":true'
+ID='UCfp-lNJy4QkIGnaEE6NtDSg'
+URL="$Domain/feeds/videos.xml?channel_id=$ID"
+Match='"iconType":"LIVE"'
 
 Red='\e[91m'
 Green='\e[92m'
@@ -99,5 +99,5 @@ if [ "$IsLive" == 'True' ]; then
 		printf "${Green}Live$Reset\n"
 	fi
 else
-	printf '$Red<Offline>$Reset\n'
+	printf "$Red<Offline>$Reset\n"
 fi
