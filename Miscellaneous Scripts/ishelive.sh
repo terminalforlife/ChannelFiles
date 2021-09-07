@@ -45,8 +45,7 @@ Err(){
 }
 
 Domain='https://www.youtube.com'
-ID='UCfp-lNJy4QkIGnaEE6NtDSg'
-URL="$Domain/feeds/videos.xml?channel_id=$ID"
+URL="$Domain/c/Terminalforlife"
 Match='"iconType":"LIVE"'
 
 Red='\e[91m'
