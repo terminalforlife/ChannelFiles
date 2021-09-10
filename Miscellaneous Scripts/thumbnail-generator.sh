@@ -11,12 +11,16 @@
 #------------------------------------------------------------------------------
 
 #Font='Noto-Sans-Display-Bold'
-Font='Mononoki-Bold'
+#Font='Mononoki-Bold'
+#Font='AppleStorm-Extra-Bold'
+Font='Ubuntu-Mono-Bold'
 FontSize=180 # Default: 200
 Text=$1
 TextColor='#FFFFFF'
-#Original="$HOME/Pictures/TFL/TFL Thumbnail.jpg"
-Original="$HOME/Pictures/TFL Banner (simple_1080p).jpg"
+StrokeColor='#000000'
+StrokeWidth=4
+#Original="$HOME/Pictures/TFL Banner (simple_1080p).jpg"
+Original="$HOME/Pictures/Surface Texture with Logo 2.jpg"
 Output="$HOME/Desktop/output.jpg"
 
 Err(){
@@ -35,7 +39,7 @@ convert "$Original" -background '#000000' -vignette 0x120+-60-60\
 
 [ $? -eq 0 ] && Err=$((Err + $?))
 
-convert "$Output" -fill "$TextColor" -strokewidth 4 -stroke Black\
+convert "$Output" -fill "$TextColor" -stroke "$StrokeColor" -strokewidth $StrokeWidth\
 	-pointsize "$FontSize" -font "$Font" -gravity Center -annotate +0 "$Text"\
 	-quality 100 "$Output"
 
