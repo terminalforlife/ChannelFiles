@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      -
 # Started On        - Sun 12 Sep 20:24:27 BST 2021
-# Last Change       - Sun 12 Sep 20:27:22 BST 2021
+# Last Change       - Sun 12 Sep 20:42:40 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -32,3 +32,24 @@ Title() {
 }
 
 Title 'Using ASCII for so-so boxes.'
+
+Title() {
+	# Pre-process to get the maximum length. It's not as efficient, but we're
+	# still talking peanuts here, so it should be more than fine!
+	MaxLen=0
+	for Line in "$@"; {
+		Len=${#Line}
+		(( Len > MaxLen )) && MaxLen=$Len
+	}
+
+	printf -v Bar '%*s' $((MaxLen + 2)) ' '
+
+	printf '%s\n' "/${Bar// /-}\\"
+	for Line in "$@"; {
+		printf '| %-*s |\n' $MaxLen "$Line"
+	}
+	printf '%s\n' "\\${Bar// /-}/"
+}
+
+# One argument per line; it's not as convenient as `\n`, but it suffices.
+Title 'Handling multiple lines is' 'doable too, with alignment.'
