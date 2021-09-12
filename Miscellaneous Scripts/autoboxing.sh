@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      -
 # Started On        - Sun 12 Sep 20:24:27 BST 2021
-# Last Change       - Sun 12 Sep 20:42:40 BST 2021
+# Last Change       - Sun 12 Sep 20:56:06 BST 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -52,4 +52,25 @@ Title() {
 }
 
 # One argument per line; it's not as convenient as `\n`, but it suffices.
-Title 'Handling multiple lines is' 'doable too, with alignment.'
+Title 'Handling multiple lines is' 'doable in an ASCII box too,' 'with alignment.'
+
+Title() {
+	# Similar to above's `for` loop, but interpreting a line delimiter of '|'.
+	MaxLen=0
+	IFS='|' read -a Lines <<< "$1"
+	for Line in "${Lines[@]}"; {
+		Len=${#Line}
+		(( Len > MaxLen )) && MaxLen=$Len
+	}
+
+	printf -v Bar '%*s' $((MaxLen + 2)) ' '
+
+	printf '%s\n' "╭${Bar// /─}╮"
+	for Line in "${Lines[@]}"; {
+		printf '│ %-*s │\n' $MaxLen "$Line"
+	}
+	printf '%s\n' "╰${Bar// /─}╯"
+}
+
+# As above, but instead of separate arguments, use a line delimiter of `|`.
+Title 'Another Unicode example|with multiple lines using|a given delimiter.'
