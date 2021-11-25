@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/unused_workspaces_in_i3.sh
 # Started On        - Thu 25 Nov 01:04:26 GMT 2021
-# Last Change       - Thu 25 Nov 01:06:43 GMT 2021
+# Last Change       - Thu 25 Nov 01:10:42 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -11,8 +11,9 @@
 # but thought it might be useful for other people, too. It basically lists out
 # workspaces which are NOT in use, based on workspaces which ARE and a list of
 # valid workspaces.
+#
+# This probably requires that the workspace names be numeric.
 #------------------------------------------------------------------------------
-
 
 # The individual available (valid) numeric workspace names.
 Valids=({1..10})
