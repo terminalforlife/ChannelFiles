@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/unused_workspaces_in_i3.sh
 # Started On        - Thu 25 Nov 01:04:26 GMT 2021
-# Last Change       - Thu 25 Nov 01:10:42 GMT 2021
+# Last Change       - Thu 25 Nov 01:11:39 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ Valids=({1..10})
 # Generate a list of workspaces, by name, which are in-use.
 IFS=',' read -a Fields <<< "$(i3-msg -t get_workspaces)"
 for Field in "${Fields[@]}"; {
-    case $Field in
+	case $Field in
 		\"num\":*) Loadeds+=("${Field#*:}") ;;
 	esac
 }
