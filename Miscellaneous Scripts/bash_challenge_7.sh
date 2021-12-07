@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 #------------------------------------------------------------------------------
-# Project Name      -
+# Project Name      - ChannelFiles/Miscellaneous Scripts/bash_challenge_7.sh
 # Started On        - Tue  7 Dec 20:46:19 GMT 2021
-# Last Change       - Tue  7 Dec 20:55:00 GMT 2021
+# Last Change       - Tue  7 Dec 20:56:35 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
