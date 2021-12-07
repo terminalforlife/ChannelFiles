@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/bash_challenge_7.sh
 # Started On        - Tue  7 Dec 20:46:19 GMT 2021
-# Last Change       - Tue  7 Dec 20:56:35 GMT 2021
+# Last Change       - Tue  7 Dec 21:59:21 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -33,8 +33,10 @@ Stream() {
 # Create a FIFO (AKA: named pipe).
 [ -p temp.fifo ] || mkfifo temp.fifo
 
-# Start sending the data to the FIFO.
-Stream >> temp.fifo &
+# Start sending the data to the FIFO. Usually, in cases like this, you'd not
+# want to use `>` instead of `>>`, but due to the way FIFOs work, it's okay
+# here.
+Stream > temp.fifo &
 
 # Read from and process the FIFO, line-by-line.
 while read; do
