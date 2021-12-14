@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #------------------------------------------------------------------------------
-# Project Name      - ChannelFiles/Miscellaneous Scripts/bash_challenge_7.sh
+# Project Name      - ChannelFiles/Miscellaneous Scripts/bash_challenge_7_fifo.sh
 # Started On        - Tue  7 Dec 20:46:19 GMT 2021
 # Last Change       - Tue  7 Dec 21:59:21 GMT 2021
 # Author E-Mail     - terminalforlife@yahoo.com
