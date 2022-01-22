@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/BNOTIONS_bash_challenge.sh
 # Started On        - Sun 12 Dec 04:28:56 GMT 2021
-# Last Change       - Sun 12 Dec 22:48:37 GMT 2021
+# Last Change       - Sat 22 Jan 02:45:04 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -22,10 +22,10 @@
 #       mark.
 #------------------------------------------------------------------------------
 
-if [ -f "$1" ] && [ -r "$1" ]; then
+if [[ -f $1 && -r $1 ]]; then
 	First='True'
 	while IFS=',' read -a Line; do
-		if [ "$First" == 'True' ]; then
+		if [[ $First == True ]]; then
 			First='False'
 			continue
 		fi

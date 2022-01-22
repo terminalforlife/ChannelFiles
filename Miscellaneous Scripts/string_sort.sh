@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/string_sort.sh
 # Started On        - Thu 24 Jun 05:18:52 BST 2021
-# Last Change       - Thu 24 Jun 19:48:19 BST 2021
+# Last Change       - Sat 22 Jan 02:53:14 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -20,7 +20,7 @@
 Len=${#1}
 for Alpha in {a..z}; {
 	for (( Char = 0; Char <= Len; Char++ )); {
-		if [ "${1:Char:1}" == "$Alpha" ]; then
+		if [[ ${1:Char:1} == $Alpha ]]; then
 			printf '%s' "${1:Char:1}"
 		fi
 	}

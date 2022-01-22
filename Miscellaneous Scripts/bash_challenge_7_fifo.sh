@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/bash_challenge_7_fifo.sh
 # Started On        - Tue  7 Dec 20:46:19 GMT 2021
-# Last Change       - Tue  7 Dec 21:59:21 GMT 2021
+# Last Change       - Sat 22 Jan 02:49:38 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ Stream() {
 }
 
 # Create a FIFO (AKA: named pipe).
-[ -p temp.fifo ] || mkfifo temp.fifo
+[[ -p temp.fifo ]] || mkfifo temp.fifo
 
 # Start sending the data to the FIFO. Usually, in cases like this, you'd not
 # want to use `>` instead of `>>`, but due to the way FIFOs work, it's okay
@@ -50,7 +50,6 @@ while read; do
 	printf '\rRed: %-3d   Blue: %-3d' $RedCount $BlueCount
 
 	# Because otherwise it would run too fast to notice it's live.
-	sleep 0.01s
+	read -n 1 -st 0.01
 done < temp.fifo
-
 printf '\n'

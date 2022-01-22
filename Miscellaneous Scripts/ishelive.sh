@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/ishelive.sh
 # Started On        - Fri  3 Sep 13:57:14 BST 2021
-# Last Change       - Tue  7 Sep 11:03:24 BST 2021
+# Last Change       - Sat 22 Jan 02:48:23 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -19,14 +19,14 @@
 #
 # Dependencies:
 #
-#   bash (>= 4.3-14)
+#   bash (>= 3.0)
 #   wget (>= 1.19.4-1) | curl (>= 7.58.0-2)
 #------------------------------------------------------------------------------
 
-CurVer='2021-09-07'
+CurVer='2022-01-22'
 Progrm=${0##*/}
 
-Usage(){
+Usage() {
 	while read; do
 		printf '%s\n' "$REPLY"
 	done <<-EOF
@@ -39,9 +39,9 @@ Usage(){
 	EOF
 }
 
-Err(){
-	printf 'ERROR: %s\n' "$2" 1>&2
-	[ $1 -gt 0 ] && exit $1
+Err() {
+	printf 'Err: %s\n' "$2" 1>&2
+	(( $1 > 0 )) && exit $1
 }
 
 Domain='https://www.youtube.com'
@@ -52,7 +52,7 @@ Red='\e[91m'
 Green='\e[92m'
 Reset='\e[0m'
 
-while [ "$1" ]; do
+while [[ -n $1 ]]; do
 	case $1 in
 		--help|-h|-\?)
 			Usage; exit 0 ;;
@@ -91,8 +91,8 @@ while read Line; do
 	esac
 done <<< "$Data"
 
-if [ "$IsLive" == 'True' ]; then
-	if [ "$DoLink" == 'True' ]; then
+if [[ $IsLive == True ]]; then
+	if [[ $DoLink == True ]]; then
 		printf "${Green}%s$Reset\n" "$ChannelHome"
 	else
 		printf "${Green}Live$Reset\n"
