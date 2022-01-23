@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - LearnLinux/Shell Tutorials/sort-films-by-year.sh
 # Started On        - Sat  5 Jun 00:33:24 BST 2021
-# Last Change       - Sat  5 Jun 01:13:58 BST 2021
+# Last Change       - Sat 22 Jan 03:07:45 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -58,33 +58,33 @@ printf '\n\n'
 
 # Add extensions to the brace expansion, if needed.
 for File in *.{mkv,mp4,avi}; {
-	[ -f "$File" ] || continue
+	[[ -f $File ]] || continue
 
 	Count=0
 	CaptureCount=0
-	while [ $Count -le ${#File} ]; do
+	while (( Count <= ${#File} )); do
 		Char=${File:Count:1}
 
-		if [ "$Char" == '(' ]; then
+		if [[ $Char == '(' ]]; then
 			OpenParensFound='True'
-		elif [ "$OpenParensFound" == 'True' ]; then
-			if [ $CaptureCount -eq 4 ]; then
-				[ "$Char" == ')' ] && break
+		elif [[ $OpenParensFound == True ]]; then
+			if (( CaptureCount == 4 )); then
+				[[ $Char == ')' ]] && break
 			else
 				Year+=$Char
 
-				let CaptureCount++
+				(( CaptureCount++ ))
 			fi
 		fi
 
-		let Count++
+		(( Count++ ))
 	done
 
 	# Replace the four `[0-9]` instances with `[[:digit:]]` if you run into
 	# locale issues; you probably won't, but I mention it just in-case.
-	[ -z "${Year/[0-9][0-9][0-9][0-9]/}" ] || continue
+	[[ -z ${Year/[0-9][0-9][0-9][0-9]/} ]] || continue
 
-	[ -d "$Year" ] || mkdir -v "$Year"
+	[[ -d $Year ]] || mkdir -v "$Year"
 
 	# Add the flag `--no-clobber` (or `-n`) if you want to disallow overwrites.
 	mv -v "$File" "$Year"/

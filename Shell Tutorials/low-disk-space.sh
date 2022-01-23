@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - LearnLinux/Shell Tutorials/clearing-cache-files.sh
 # Started On        - Wed 16 Dec 22:58:47 GMT 2020
-# Last Change       - Wed 16 Dec 23:43:43 GMT 2020
+# Last Change       - Sat 22 Jan 03:03:30 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -26,8 +26,8 @@
 # This will ignore the root user, by the way.
 #------------------------------------------------------------------------------
 
-if [ $UID -gt 0 ]; then
-	printf 'ERROR: Root access is required.\n' 1>&2
+if (( UID > 0 )); then
+	printf 'Err: Root access is required.\n' 1>&2
 	exit 1
 fi
 
@@ -36,7 +36,7 @@ for Dir in /home/*; {
 
 	case $REPLY in
 		[Yy][Ee][Ss]|[Yy])
-			if [ -d "$Dir" ] && [ "$Dir" != 'lost+found' ]; then
+			if [[ -d $Dir && $Dir != lost+found ]]; then
 				rm -rv "$Dir"/.cache "$Dir"/.thumbnails
 			fi ;;
 		[Nn][Oo]|[Nn])

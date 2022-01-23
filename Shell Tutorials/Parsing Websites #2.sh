@@ -22,7 +22,7 @@ Rank=0
 wget -qO - "$URL" | while read Line; do
 	case $Line in
 		*'class="phr2"'*)
-			Rank=$((Rank + 1))
+			Rank=$(( Rank + 1 ))
 			Buffer=${Line#*a href=\"}
 			printf '#%-3d   %s\n' $Rank "${Buffer%%\">*}"
 
