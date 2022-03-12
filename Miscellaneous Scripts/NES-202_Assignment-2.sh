@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/NES-202_Assignment-2.sh
 # Started On        - Sat 12 Mar 01:44:15 GMT 2022
-# Last Change       - Sat 12 Mar 03:24:21 GMT 2022
+# Last Change       - Sat 12 Mar 03:32:02 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -126,7 +126,10 @@ while :; do
 				if [[ -f $File && -w $File ]]; then
 					Files+=(`stat -c '%f:%s' "$File"`)
 				fi
-			} | less ;;
+			}
+
+			Sort Files
+			printf '%s\n' "${Files[@]}" | less ;;
 		4)
 			# Cannot convert an array to an associative array, so if the user
 			# selects one of the other array-related options, then this, it'll
