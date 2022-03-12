@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/NES-202_Assignment-2.sh
 # Started On        - Sat 12 Mar 01:44:15 GMT 2022
-# Last Change       - Sat 12 Mar 03:32:02 GMT 2022
+# Last Change       - Sat 12 Mar 03:36:08 GMT 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
@@ -11,7 +11,9 @@
 #
 #   https://www.youtube.com/watch?v=H_nCtDlcHQg
 #
-# I should point out: I don't understand a word the man said in the video.
+# I should point out: I don't understand a word the man said in the video. The
+# document title is NES 202 - Introduction to UNIX; Programming Assignment #2.
+# It has something to do with Elearning, but I'm not familiar with it.
 #
 # NOTES:
 #
