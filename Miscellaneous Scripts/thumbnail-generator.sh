@@ -3,15 +3,15 @@
 #------------------------------------------------------------------------------
 # Project Name      - ChannelFiles/Miscellaneous Scripts/thumbnail-generator.sh
 # Started On        - Thu 14 Jan 20:54:57 GMT 2021
-# Last Change       - Fri  8 Apr 23:28:47 BST 2022
+# Last Change       - Mon 18 Apr 19:19:23 BST 2022
 # Author E-Mail     - terminalforlife@yahoo.com
 # Author GitHub     - https://github.com/terminalforlife
 #------------------------------------------------------------------------------
 # Crappy thumbnail generator, because the people demand it!
+#
+# Pipes separate lines, not `\n`!
 #------------------------------------------------------------------------------
 
-#Font='Ubuntu-Mono-Bold'
-#Font='JetBrains-Mono-Bold'
 Font='3270-Medium'
 FontSize=160
 Text=$1
@@ -19,9 +19,12 @@ TextColor='#FFFFFF'
 Original="$HOME/Pictures/TFL Banner (simple_1080p).jpg"
 Output="$HOME/Desktop/thumbnail.jpg"
 
-# Use this if you want multi-line auto-boxing of the text. This needs BASH.
+Err(){
+	printf 'ERROR: %s\n' "$2" 1>&2
+	[ $1 -gt 0 ] && exit $1
+}
+
 Title() {
-	# Similar to above's `for` loop, but interpreting a line delimiter of '|'.
 	IFS='|' read -ra Lines <<< "$1"
 	for Line in "${Lines[@]}"; {
 		Len=${#Line}
@@ -40,25 +43,20 @@ Title() {
 printf -v Title '%s' "$(Title "$1")"
 printf '%s\n' "$(Title "$1")"
 
-#exit
+(( $# == 1 )) || Err 1 'Thumbnail annotation string required.'
 
-Err(){
-	printf 'ERROR: %s\n' "$2" 1>&2
-	[ $1 -gt 0 ] && exit $1
-}
+type -P convert &> /dev/null || Err 1 "Dependency 'convert' not met."
+type -P feh &> /dev/null || Err 1 "Dependency 'feh' not met."
 
-[ $# -ne 1 ] && Err 1 'Thumbnail annotation string required.'
+if convert "$Original" -gaussian-blur 18x18 -quality 100 "$Output"; then
+	convert "$Output" -fill "$TextColor" -pointsize "$FontSize" -font "$Font"\
+		-weight Medium -gravity Center -annotate +0 "$Title" -quality 100 "$Output"
 
-command -v convert 1> /dev/null 2>&1 || Err 1 "Dependency 'convert' not met."
-command -v feh 1> /dev/null 2>&1 || Err 1 "Dependency 'feh' not met."
-
-convert "$Original" -gaussian-blur 18x18 -quality 100 "$Output"
-
-[ $? -eq 0 ] && Err=$((Err + $?))
-
-convert "$Output" -fill "$TextColor" -pointsize "$FontSize" -font "$Font"\
-	-weight Medium -gravity Center -annotate +0 "$Title" -quality 100 "$Output"
-
-[ $? -eq 0 ] && Err=$((Err + $?))
-
-[ $Err -eq 0 ] && feh "$Output"
+	if (( $? == 0 )); then
+		feh "$Output" || Err 1 'Failed to show thumbnail with feh(1).'
+	else
+		Err 1 'Second convert(1) pass failed.'
+	fi
+else
+	Err 1 'First convert(1) pass failed.'
+fi
